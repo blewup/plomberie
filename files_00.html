@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <meta name="description" content="Plomberie Martin Boisvert - Expert résidentiel sur la Rive-Sud de Montréal. Réparation, rénovation et installation.">
+    
+    <!-- Security: CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data:;">
+    
+    <title>Plomberie Martin Boisvert | Expert Résidentiel Sainte-Catherine</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFKX6YXZ0T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TFKX6YXZ0T');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1565073845141838" crossorigin="anonymous"></script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/logo/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/logo/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo/apple-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="images/logo/mstile-150x150.png">
+    <link rel="manifest" href="images/logo/site.webmanifest">
+    
+    <style>
+        /* Local Fonts Import */
+        @font-face { font-family: 'Black Ops One'; src: url('fonts/BlackOps.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Comic Sans MS'; src: url('fonts/ComicSansMS.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Impact'; src: url('fonts/Impact.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Merriweather'; src: url('fonts/Merriweather.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Merriweather'; src: url('fonts/Merriweather-Italic.ttf') format('truetype'); font-weight: normal; font-style: italic; font-display: swap; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('fonts/PlusJakartaSans.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('fonts/PlusJakartaSans-Italic.ttf') format('truetype'); font-weight: normal; font-style: italic; font-display: swap; }
+
+    </style>
+
+    <!-- Tailwind Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        onyx: '#0F0F10',
+                        cardinal: '#C41E3A', // Cardinal Red
+                        websiteBlue: '#3F47CC', // Custom Blue
+                    },
+                    fontFamily: {
+                        header: ['Black Ops One', 'system-ui'],
+                        impact: ['Impact', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        comic: ['"Comic Sans MS"', '"Comic Sans"', 'cursive'],
+                    },
+                    borderRadius: {
+                        'custom': '12px',
+                    },
+                    backgroundImage: {
+                        'expertise-light': "url('images/topic/expertise-light.png')",
+                        'expertise-dark': "url('images/topic/expertise-dark.png')",
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+        /* General Unselectable Class */
+        body { user-select: none; -webkit-user-select: none; }
+        input, textarea, .selectable-text { user-select: text; -webkit-user-select: text; }
+
+        /* Glassmorphism */
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        .nav-hidden { transform: translateY(-100%); }
+
+        /* Animation Slider: Ken Burns & Fade */
+        @keyframes kenBurns {
+            0% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .slide { z-index: 0; position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .slide.active { opacity: 1; z-index: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1); }
+        .slide.active img {
+            animation: fadeInOut 7000ms forwards, kenBurns 7000ms forwards;
+        }
+
+        /* Accordion */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .accordion-content.open { max-height: 500px; }
+        .rotate-icon { transition: transform 0.3s ease; }
+        .rotate-icon.active { transform: rotate(180deg); }
+
+        /* Map Dark Mode Filter */
+        .dark .map-iframe {
+            filter: invert(90%) hue-rotate(180deg) contrast(90%);
+        }
+
+        /* Radius Override */
+        .radius-override, .rounded-full, .rounded-3xl, .rounded-2xl {
+            border-radius: 12px !important;
+        }
+
+        /* Hover Scale */
+        .hover-scale {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.05); cursor: pointer;
+        }
+        
+        /* Expertise Background: Fixed to the very back page */
+        .bg-expertise {
+            /* Background image set dynamically via Tailwind classes (expertise-light / expertise-dark) */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Fixed relative to the viewport */
+        }
+
+        /* Contact Form Background Sync */
+        .contact-form-sync {
+            background-image: url('images/topic/9x16.png');
+            background-size: cover;
+            background-position: center;
+            /* Portrait Padding: Sides 4.5%, Top 21%, Bottom 10% */
+            padding: 21% 4.5% 10% 4.5%; 
+        }
+        
+        /* Aspect Ratio Breakpoint at 6/5 (1.2) */
+        @media (min-aspect-ratio: 6/5) {
+            .contact-form-sync {
+                background-image: url('images/topic/16x9.png');
+                /* Landscape Padding: Sides 13.75%, Top 13.5%, Bottom 10% */
+                padding: 13.5% 13.75% 10% 13.75%;
+            }
+        }
+
+        /* Text Stroke */
+        .text-outline-black {
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-expertise {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+        .reveal-expertise.active {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden bg-gray-50 text-gray-900 dark:bg-onyx dark:text-[#E5E5E5] transition-colors duration-300">
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="sticky top-0 z-50 glass-nav border-b border-gray-200 dark:border-white/5 h-16 flex items-center bg-white/90 dark:bg-[#0F0F10]/90">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Title Left -->
+                <div class="flex flex-col leading-none select-none">
+                    <span class="text-sm md:text-lg font-header text-gray-900 dark:text-white tracking-tight hover-scale cursor-default">PLOMBERIE</span>
+                    <span class="text-base md:text-xl font-extrabold text-websiteBlue dark:text-websiteBlue uppercase tracking-wide hover-scale cursor-default">MARTIN BOISVERT</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-widest">
+                    <a href="#accueil" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_home">Accueil</a>
+                    <a href="#plomberie" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_plumbing">La Plomberie</a>
+                    <a href="#expertise" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_expertise">Expertise</a>
+                    <a href="#aide" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_help">Aide</a>
+                    <a href="#contact" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_contact">Contact</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 radius-override hover:bg-gray-200 dark:hover:bg-white/10 transition hover-scale" aria-label="Toggle Theme">
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path></svg>
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="p-2 radius-override bg-gray-200 dark:bg-white/10 font-bold hover-scale w-10 h-10 flex items-center justify-center" aria-label="Toggle Language">
+                        <span id="current-lang">EN</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Button -->
+                <button id="mobile-toggle" class="lg:hidden text-gray-900 dark:text-white p-2 hover-scale" aria-label="Open Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-black border-t border-gray-200 dark:border-white/10 px-6 py-8 space-y-6 shadow-2xl transition-colors duration-300">
+            <a href="#accueil" class="block text-xl font-bold text-gray-900 dark:text-white hover-scale" data-translate="nav_home">Accueil</a>
+            <a href="#plomberie" class="block text-xl font-bold text-gray-900 dark:text-white hover-scale" data-translate="nav_plumbing">La Plomberie</a>
+            <a href="#expertise" class="block text-xl font-bold text-gray-900 dark:text-white hover-scale" data-translate="nav_expertise">Expertise</a>
+            <a href="#aide" class="block text-xl font-bold text-gray-900 dark:text-white hover-scale" data-translate="nav_help">Aide</a>
+            <a href="#contact" class="block text-xl font-bold text-gray-900 dark:text-white hover-scale" data-translate="nav_contact">Contact</a>
+            
+            <div class="flex gap-4">
+                <button id="mobile-lang-toggle" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400 hover-scale">
+                    <span id="mobile-current-lang">EN</span>
+                </button>
+                <button id="mobile-theme-toggle" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400 hover-scale">
+                    <span data-translate="change_theme">Changer Thème</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Carousel) -->
+    <header id="accueil" class="relative h-[85vh] min-h-[500px] flex items-center overflow-hidden bg-gray-900 select-none">
+        <!-- Phone Number Top-Right (Adjusted: top-16 / 64px to sit straight down navbar) -->
+        <div class="absolute top-[0] right-6 z-30 pt-4">
+            <a href="tel:+15147552107" class="inline-block bg-white/65 dark:bg-black/65 px-4 py-2 radius-override text-cardinal font-bold text-sm hover:scale-105 transition backdrop-blur-sm shadow-lg border border-white/10 select-text">
+                +1 (514) 755-2107
+            </a>
+        </div>
+
+        <!-- Slideshow Background -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="slide active"><img src="images/slide/slide_01.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40" alt="Plomberie"></div>
+            <div class="slide"><img src="images/slide/slide_02.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40" alt="Outillage"></div>
+            <div class="slide"><img src="images/slide/slide_03.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40" alt="Installation"></div>
+            <div class="slide"><img src="images/slide/slide_04.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40" alt="Rénovation"></div>
+            <div class="slide"><img src="images/slide/slide_05.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40" alt="Finition"></div>
+        </div>
+
+        <!-- Logo Bottom Right (300% size = h-60) -->
+        <div class="absolute bottom-10 right-6 z-20 hover-scale">
+            <img src="images/logo/PMB.png" alt="Logo Plomberie Martin Boisvert" class="h-60 w-auto drop-shadow-lg">
+        </div>
+
+        <div class="relative z-10 w-full max-w-[4096px] px-6 text-left mx-auto">
+            <div class="max-w-5xl mr-auto ml-0">
+                <!-- Title in 3 lines -->
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-header text-white leading-tight mb-8 drop-shadow-xl text-left" data-translate="hero_title">
+                    BIENVENU CHEZ <br>
+                    PLOMBERIE <br>
+                    MARTIN BOISVERT
+                </h1>
+                <p class="text-gray-100 text-base md:text-lg max-w-2xl mb-12 italic drop-shadow-md text-left" data-translate="hero_subtitle">
+                    Spécialisé en plomberie résidentiel, Martin Boisvert est votre plombier sur la rive sud de Montréal
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-start">
+                    <a href="tel:+15147552107" class="bg-websiteBlue hover:bg-blue-800 text-white px-8 py-4 radius-override font-bold uppercase tracking-widest text-xs md:text-sm transition transform hover-scale shadow-2xl border border-transparent" data-translate="cta_phone">
+                        Contactez-nous par <u>téléphone</u>
+                    </a>
+                    <a href="#contact" class="bg-white/10 border border-white/30 hover:bg-white/20 text-white px-8 py-4 radius-override font-bold uppercase tracking-widest text-xs md:text-sm transition backdrop-blur-sm hover-scale" data-translate="cta_email">
+                        Ou écrivez-nous par <u>e-mail</u>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION PLOMBERIE (Services) -->
+    <section id="plomberie" class="py-8 md:py-12 px-6 w-full max-w-[4096px] mx-auto reveal select-none">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white text-center mb-12 uppercase tracking-wider" data-translate="section_plumbing">La Plomberie</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="space-y-6 group hover-scale">
+                    <div class="aspect-square radius-override overflow-hidden border border-gray-200 dark:border-white/5 relative shadow-lg">
+                        <img src="images/topic/copper.webp" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Tuyaux de cuivre">
+                    </div>
+                    <h4 class="text-xl font-header text-websiteBlue dark:text-websiteBlue uppercase" data-translate="copper_title">TUYAUX DE CUIVRE</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="copper_desc">Encore aujourd'hui le seul matériel accepté dans le Westmount de l'Île de Montréal. Plus solide et aussi durable que le PEX. Plus cher, mais aussi plus élégant.</p>
+                </div>
+                <div class="space-y-6 group hover-scale">
+                    <div class="aspect-square radius-override overflow-hidden border border-gray-200 dark:border-white/5 relative shadow-lg">
+                        <img src="images/topic/drillbit.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Un plombier">
+                    </div>
+                    <h4 class="text-xl font-header text-websiteBlue dark:text-websiteBlue uppercase" data-translate="plumber_title">Un plombier</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="plumber_desc">Tous nos plombiers sont bien formés et adéquatement munis de tous les outils nécessaires, lors des travaux prévus.</p>
+                </div>
+                <div class="space-y-6 group hover-scale">
+                    <div class="aspect-square radius-override overflow-hidden border border-gray-200 dark:border-white/5 relative shadow-lg">
+                        <img src="images/topic/back.webp" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Backwater Valve">
+                    </div>
+                    <h4 class="text-xl font-header text-websiteBlue dark:text-websiteBlue uppercase" data-translate="valve_title">Backwater Valve</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="valve_desc">L'installation de clapet anti-retour sur les lignes d'alimentation d'eau démontrée ci-haut. Prendre note que l'installation sur les lignes d'évacuation est aussi possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION EXPERTISE ET QUALITE -->
+    <!-- Background adaptive (light/dark) + Fixed (Parallax) -->
+    <section id="expertise" class="py-12 md:py-20 px-6 w-full max-w-[4096px] mx-auto bg-expertise bg-expertise-light dark:bg-expertise-dark transition-colors duration-300 reveal-expertise select-none">
+        <div class="max-w-7xl mx-auto relative group min-h-[600px] flex flex-col justify-center">
+            
+            <div class="relative z-20 w-full px-4 text-center">
+                <!-- Title ALWAYS BLACK -->
+                <h3 class="text-4xl md:text-6xl font-header text-black dark:text-white uppercase drop-shadow-xl tracking-widest mb-16" data-translate="section_expertise">Expertise et Qualité</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <!-- Réparation -->
+                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-64 group hover-scale shadow-lg">
+                        <img src="images/topic/winter.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Réparation">
+                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="repair_title">Réparation</h4>
+                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="repair_desc">Service rapide pour tous vos bris et urgences.</p>
+                        </div>
+                    </div>
+                    <!-- Rénovation -->
+                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-64 group hover-scale shadow-lg">
+                        <img src="images/topic/reno.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Rénovation">
+                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="reno_title">Rénovation</h4>
+                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="reno_desc">Modernisation de salles de bain et cuisines.</p>
+                        </div>
+                    </div>
+                    <!-- Résidentielle -->
+                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-64 group hover-scale shadow-lg">
+                        <img src="images/topic/residentiel.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Résidentielle">
+                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="resid_title">Résidentielle</h4>
+                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="resid_desc">Solutions complètes pour votre maison.</p>
+                        </div>
+                    </div>
+                    <!-- Commerciale -->
+                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-64 group hover-scale shadow-lg">
+                        <img src="images/topic/commercial.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Commerciale">
+                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="comm_title">Commerciale</h4>
+                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="comm_desc">Entretien et installation pour entreprises.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION AIDE (FAQ) -->
+    <section id="aide" class="py-8 md:py-12 bg-gray-100 dark:bg-white/[0.02] px-6 w-full max-w-[4096px] mx-auto transition-colors duration-300 reveal select-none">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white uppercase mb-4" data-translate="section_help">Aide</h2>
+                <!-- Comic Sans Font for questions (600 weight) -->
+                <p class="text-websiteBlue font-bold" id="help-text">
+                    <span data-translate="help_intro">Si vous avez toujours des questions, veuillez simplement nous joindre soit par</span>
+                    <a href="tel:+15147552107" class="text-red-600 hover:underline hover-scale inline-block select-text" data-translate="help_phone">téléphone</a>
+                    <span class="text-websiteBlue" data-translate="help_or">, soit par</span>
+                    <a href="#" onclick="sendHelpEmail(event)" class="text-yellow-500 hover:underline hover-scale inline-block select-text" data-translate="help_email">email</a>
+                    <span class="text-websiteBlue" data-translate="help_then">. Ou bien, pour une réponse plus</span>
+                    <span class="underline" data-translate="help_fast">rapide</span>
+                    <span class="text-websiteBlue" data-translate="help_by">, par</span>
+                    <a href="sms:+15147552107" class="text-green-500 hover:underline hover-scale inline-block select-text" data-translate="help_sms">SMS</a>
+                    <span class="text-websiteBlue">.</span>
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="border border-gray-300 dark:border-white/10 radius-override overflow-hidden bg-white dark:bg-transparent">
+                    <button class="accordion-btn w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-white/5 transition" onclick="toggleAccordion(this)">
+                        <span class="text-lg text-gray-900 dark:text-white font-comic font-semibold" data-translate="faq_q1">Vous n'avez plus d'eau ?</span>
+                        <svg class="w-6 h-6 rotate-icon text-websiteBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-white/5 font-comic italic font-normal" data-translate="faq_a1">
+                            Téléphonnez-nous au numéro marqué dans le bas ou dans le haut de la page.
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray-300 dark:border-white/10 radius-override overflow-hidden bg-white dark:bg-transparent">
+                    <button class="accordion-btn w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-white/5 transition" onclick="toggleAccordion(this)">
+                        <span class="text-lg text-gray-900 dark:text-white font-comic font-semibold" data-translate="faq_q2">Vous sentez des odeurs ?</span>
+                        <svg class="w-6 h-6 rotate-icon text-websiteBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-white/5 font-comic italic font-normal" data-translate="faq_a2">
+                            Si c'est plus simple pour vous, envoyez-nous un SMS au même numéro.
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray-300 dark:border-white/10 radius-override overflow-hidden bg-white dark:bg-transparent">
+                    <button class="accordion-btn w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-white/5 transition" onclick="toggleAccordion(this)">
+                        <span class="text-lg text-gray-900 dark:text-white font-comic font-semibold" data-translate="faq_q3">Vous avez besoin d'une soumission ?</span>
+                        <svg class="w-6 h-6 rotate-icon text-websiteBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-white/5 font-comic italic font-normal" data-translate="faq_a3">
+                            Nous sommes aussi joignable par email au : <a href="mailto:plomberiemartinboisvert@gmail.com" class="text-websiteBlue hover:underline">plomberiemartinboisvert@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CONTACT -->
+    <section id="contact" class="w-full mx-auto relative overflow-hidden bg-gray-50 dark:bg-onyx transition-colors duration-300 reveal">
+        <div class="w-full h-full py-16 md:py-24 px-6 flex justify-center items-center">
+            
+            <div class="max-w-[4096px] w-full grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
+                
+                <!-- ESSAYEZ-NOUS (Contact Info) -->
+                <div class="bg-white dark:bg-[#0A0A0B]/90 radius-override border border-gray-200 dark:border-white/5 p-10 md:p-16 flex flex-col justify-center m-4 shadow-2xl backdrop-blur-md select-none">
+                    <h3 class="text-3xl font-header text-red-600 mb-8 uppercase text-center" data-translate="try_us_title">Essayez-Nous !!</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-8" data-translate="try_us_desc">
+                        Faites l'expérience d'un service de plomberie sans égal. Des prix raisonnable. Un maitre plombier qui accumule deja plus de 35ans de service. Pour de plus amples renseignements concernant l'equipe, veuillez vous referrez a la page en question en suivant le raccourci dans le bas de la page. Plomberie Martin Boisvert est basée sur la Rive-Sud de Montréal, est prête à intervenir rapidement pour tous vos besoins résidentiels. Qualité, propreté et courtoisie sont notre signature, mais c'est le savoir faire qui sait nous demarquer a chaque fois. Les estimations sont generalement gratuite, mais des exceptions peuvent etre a envisager. Nous desservons la rive sud centre et les environs. (Des frais de déplacement s'appliquent hors zone).
+                    </p>
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-header text-gray-900 dark:text-white mb-2 uppercase">Plomberie Martin Boisvert</h4>
+                        <p class="text-gray-600 dark:text-gray-400">5360 Rue Lemieux, Sainte-Catherine, Quebec J5C 1J5</p>
+                        <a href="tel:+15147552107" class="text-3xl md:text-4xl font-impact text-cardinal hover:text-red-500 transition block mt-4 hover-scale select-text">+1 (514) 755-2107</a>
+                    </div>
+                </div>
+
+                <!-- Form (Message Section) -->
+                <div class="flex items-center justify-center m-4">
+                    <div class="contact-form-sync radius-override border border-gray-200 dark:border-white/5 w-full max-w-2xl shadow-2xl">
+                        <!-- BIGGER TITLE, RED, BLACK STROKE -->
+                        <h3 class="text-4xl lg:text-5xl font-header text-red-600 mb-8 uppercase text-center text-outline-black" data-translate="contact_title">Contactez-Nous</h3>
+                        
+                        <form id="contactForm" class="space-y-8 pl-[4.5%] pr-[4.5%] pt-[21%] pb-[10%] lg:pl-[13.75%] lg:pr-[13.75%] lg:pt-[13.5%] lg:pb-[10%]" onsubmit="handleFormSubmit(event)">
+                            <h4 class="text-sm font-bold uppercase tracking-widest text-websiteBlue dark:text-websiteBlue select-none" data-translate="contact_subtitle">Laissez-nous un email</h4>
+                            <div class="space-y-6">
+                                <div class="relative">
+                                    <input id="nameInput" type="text" placeholder="Nom Complet *" class="w-full bg-gray-50 border-b border-gray-300 py-4 outline-none focus:border-websiteBlue transition text-gray-900">
+                                </div>
+                                <div class="relative">
+                                    <input id="emailInput" type="email" placeholder="Email *" class="w-full bg-gray-50 border-b border-gray-300 py-4 outline-none focus:border-websiteBlue transition text-gray-900">
+                                </div>
+                                <div class="relative">
+                                    <input id="phoneInput" type="tel" placeholder="Téléphone *" class="w-full bg-gray-50 border-b border-gray-300 py-4 outline-none focus:border-websiteBlue transition text-gray-900">
+                                </div>
+                                <div class="relative">
+                                    <textarea id="messageInput" rows="4" placeholder="Message *" class="w-full bg-gray-50 border-b border-gray-300 py-4 outline-none focus:border-websiteBlue transition text-gray-900"></textarea>
+                                </div>
+                                
+                                <div class="relative -mt-4 select-none">
+                                    <p class="text-[10px] text-gray-500 mt-1 italic" data-translate="contact_photo_note">Note : Les photos et/ou plans de votre choix pourront être ajoutés manuellement après validation.</p>
+                                </div>
+                                
+                                <label class="flex items-start gap-3 cursor-pointer group hover-scale select-none">
+                                    <input type="checkbox" class="mt-1 accent-websiteBlue">
+                                    <span class="text-xs text-gray-500 group-hover:text-gray-700 transition" data-translate="contact_newsletter">Inscrivez-vous à nos info lettres par Email en un seul clic.</span>
+                                </label>
+                                
+                                <button type="submit" class="mt-[5%] bg-websiteBlue hover:bg-blue-800 text-white px-12 py-5 radius-override font-bold uppercase tracking-widest text-xs transition shadow-xl w-full md:w-auto hover-scale select-none" data-translate="contact_send">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TEMOIGNAGES (People) -->
+    <section id="equipe" class="py-8 md:py-12 px-6 w-full max-w-[4096px] mx-auto reveal select-none">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white text-center mb-16 uppercase tracking-wider" data-translate="section_trust">Ils nous font confiance</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Billy -->
+                <div class="bg-white dark:bg-white/5 p-8 radius-override border border-gray-200 dark:border-white/10 shadow-lg text-center transform hover:-translate-y-2 transition duration-300 hover-scale">
+                    <img src="images/people/Billy_St-Hilaire-1x1.png" alt="Billy St-Hilaire" class="w-24 h-24 radius-override mx-auto mb-4 border-4 border-websiteBlue object-cover">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Billy St-Hilaire</h4>
+                    <div class="flex justify-center text-yellow-400 mb-4 gap-1">
+                        <!-- 4.7 stars representation -->
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <div class="relative overflow-hidden w-5 h-5">
+                           <svg class="absolute w-5 h-5 fill-gray-300" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                           <svg class="absolute w-5 h-5 fill-current" viewBox="0 0 20 20" style="width: 70%"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Pas assez cher ..."</p>
+                </div>
+                <!-- Myriam -->
+                <div class="bg-white dark:bg-white/5 p-8 radius-override border border-gray-200 dark:border-white/10 shadow-lg text-center transform hover:-translate-y-2 transition duration-300 hover-scale">
+                    <img src="images/people/Myriam_Boyer-1x1.png" alt="Myriam Boyer" class="w-24 h-24 radius-override mx-auto mb-4 border-4 border-websiteBlue object-cover">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Myriam Boyer</h4>
+                    <div class="flex justify-center text-yellow-400 mb-4 gap-1">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Travail rapide et propre. Je recommande !"</p>
+                </div>
+                <!-- Real -->
+                <div class="bg-white dark:bg-white/5 p-8 radius-override border border-gray-200 dark:border-white/10 shadow-lg text-center transform hover:-translate-y-2 transition duration-300 hover-scale">
+                    <img src="images/people/Real_Marquis-1x1.png" alt="Real Marquis" class="w-24 h-24 radius-override mx-auto mb-4 border-4 border-websiteBlue object-cover">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Real Marquis</h4>
+                    <div class="flex justify-center text-yellow-400 mb-4 gap-1">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Travail rapide et propre. Je recommande !"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION LOCATION (Last before Footer) -->
+    <!-- Reduced padding -->
+    <section class="py-8 md:py-12 px-6 w-full max-w-[4096px] mx-auto reveal select-none">
+        <div class="max-w-7xl mx-auto relative">
+            <div class="w-full aspect-[16/7] radius-override overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 relative">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.366795493034!2d-73.5760892234673!3d45.40472297107297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc90f7070777777%3A0x7777777777777777!2s5360%20Rue%20Lemieux%2C%20Sainte-Catherine%2C%20QC%20J5C%201J5!5e0!3m2!1sfr!2sca!4v1703000000000!5m2!1sfr!2sca" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="map-iframe transition-all duration-300">
+                </iframe>
+                
+                <!-- Title Overlay "LOCATION" in Black (Top Right) -->
+                <div class="absolute top-4 right-4 bg-black/65 px-8 py-2 radius-override shadow-lg backdrop-blur-sm z-10 pointer-events-none">
+                    <h2 class="text-2xl md:text-4xl font-header text-white/100 uppercase tracking-wider m-0" data-translate="section_location">LOCATION</h2>
+                </div>
+
+                <!-- Hours Overlay (Bottom Right) -->
+                <div class="absolute bottom-4 right-4 w-80 bg-black/65 p-4 radius-override shadow-lg backdrop-blur-sm z-10 text-white/100 text-sm">
+                    <h4 class="font-bold uppercase mb-2 text-center" data-translate="hours_title">Heures d'ouverture</h4>
+                    <div class="flex justify-between border-b border-white/20 pb-1 mb-1">
+                        <span data-translate="hours_calls">Appels (7/7)</span>
+                        <span>07:00 - 19:00</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/20 pb-1 mb-1">
+                        <span data-translate="hours_jobs_wk">Travaux (Lun-Ven)</span>
+                        <span>08:00 - 17:00</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/20 pb-1 mb-1">
+                        <span data-translate="hours_jobs_sat">Travaux (Sam)</span>
+                        <span>09:00 - 15:00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span data-translate="hours_jobs_sun">Travaux (Dim)</span>
+                        <span class="text-red-400">Fermé</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Hauteur Réduite) -->
+    <footer class="py-4 border-t border-gray-200 dark:border-white/5 bg-gray-100 dark:bg-[#0F0F10] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Left Side -->
+                <div class="text-center md:text-left">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-1">Copyright © 2025 PLOMBERIE MARTIN BOISVERT</p>
+                    <p class="text-[9px] text-gray-600 dark:text-gray-700 uppercase tracking-widest font-bold">Entreprise enregistrée • Tous droits réservés</p>
+                </div>
+                
+                <!-- Center Icons (Facebook) -->
+                <div class="flex items-center gap-6">
+                    <a href="https://www.facebook.com/profile.php?id=61557189520127" target="_blank" class="text-[#0C0F18] dark:text-gray-400 hover:text-websiteBlue dark:hover:text-websiteBlue transition transform hover:scale-105">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12.061C22 6.505 17.523 2 12 2S2 6.505 2 12.061c0 5.022 3.657 9.184 8.438 9.939v-7.03h-2.54v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.197 2.238.197v2.476h-1.26c-1.243 0-1.63.775-1.63 1.57v1.888h2.773l-.443 2.908h-2.33V22c4.78-.755 8.437-4.917 8.437-9.939z"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Right Side Links (Grouped right) -->
+                <div class="flex flex-col md:flex-row gap-4 text-[9px] text-gray-600 uppercase tracking-widest text-center md:text-right justify-end">
+                    <a href="pages/equipe.html" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="nav_team">Equipe</a>
+                    <a href="pages/politique-confidentialite.html" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="footer_privacy">Politiques de confidentialité</a>
+                    <a href="pages/conditions-utilisation.html" class="hover:text-websiteBlue dark:hover:text-websiteBlue transition hover-scale" data-translate="footer_terms">Les termes d'usage</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-6 z-50 transform translate-y-full transition-transform duration-500 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm md:text-base text-gray-300 max-w-4xl text-center md:text-left" data-translate="cookie_msg">Nous utilisons un service de tracage Google et Google Adsens pour rentabiliser nos annonces publicitaires et aussi pour rendre ces derniere plus efficace. Merci de votre comprehension.</p>
+        <button id="cookie-accept" class="bg-websiteBlue hover:bg-blue-800 text-white px-8 py-3 radius-override font-bold uppercase tracking-widest text-xs transition transform hover:scale-105 shadow-lg" data-translate="cookie_btn">Continuer</button>
+    </div>
+
+    <script>
+        // --- TRANSLATION LOGIC ---
+        const translations = {
+            fr: {
+                nav_home: "Accueil",
+                nav_plumbing: "La Plomberie",
+                nav_expertise: "Expertise",
+                nav_help: "Aide",
+                nav_contact: "Contact",
+                change_theme: "Changer Thème",
+                hero_title: "BIENVENU CHEZ <br>PLOMBERIE <br>MARTIN BOISVERT",
+                hero_subtitle: "Spécialisé en plomberie résidentiel, Martin Boisvert est votre plombier sur la rive sud de Montréal",
+                cta_phone: "Contactez-nous par <u>téléphone</u>",
+                cta_email: "Ou écrivez-nous par <u>e-mail</u>",
+                section_plumbing: "La Plomberie",
+                copper_title: "TUYAUX DE CUIVRE",
+                copper_desc: "Encore aujourd'hui le seul matériel accepté dans le Westmount de l'Île de Montréal. Plus solide et aussi durable que le PEX. Plus cher, mais aussi plus élégant.",
+                plumber_title: "Un plombier",
+                plumber_desc: "Tous nos plombiers sont bien formés et adéquatement munis de tous les outils nécessaires, lors des travaux prévus.",
+                valve_title: "Backwater Valve",
+                valve_desc: "L'installation de clapet anti-retour sur les lignes d'alimentation d'eau démontrée ci-haut. Prendre note que l'installation sur les lignes d'évacuation est aussi possible.",
+                section_expertise: "Expertise et Qualité",
+                repair_title: "Réparation",
+                repair_desc: "Service rapide pour tous vos bris et urgences.",
+                reno_title: "Rénovation",
+                reno_desc: "Modernisation de salles de bain et cuisines.",
+                resid_title: "Résidentielle",
+                resid_desc: "Solutions complètes pour votre maison.",
+                comm_title: "Commerciale",
+                comm_desc: "Entretien et installation pour entreprises.",
+                section_help: "Aide",
+                help_intro: "Si vous avez toujours des questions, veuillez simplement nous joindre soit par",
+                help_phone: "téléphone",
+                help_or: ", soit par",
+                help_email: "email",
+                help_then: ". Ou bien, pour une réponse plus",
+                help_fast: "rapide",
+                help_by: ", par",
+                help_sms: "SMS",
+                faq_q1: "Vous n'avez plus d'eau ?",
+                faq_a1: "Téléphonnez-nous au numéro marqué dans le bas ou dans le haut de la page.",
+                faq_q2: "Vous sentez des odeurs ?",
+                faq_a2: "Si c'est plus simple pour vous, envoyez-nous un SMS au même numéro.",
+                faq_q3: "Vous avez besoin d'une soumission ?",
+                faq_a3: "Nous sommes aussi joignable par email au : <a href='mailto:plomberiemartinboisvert@gmail.com' class='text-websiteBlue hover:underline'>plomberiemartinboisvert@gmail.com</a>",
+                try_us_title: "Essayez-Nous !!",
+                try_us_desc: "Faites l'expérience d'un service de plomberie sans égal. Des prix raisonnable. Un maitre plombier qui accumule deja plus de 35ans de service. Pour de plus amples renseignements concernant l'equipe, veuillez vous referrez a la page en question en suivant le raccourci dans le bas de la page. Plomberie Martin Boisvert est basée sur la Rive-Sud de Montréal, est prête à intervenir rapidement pour tous vos besoins résidentiels. Qualité, propreté et courtoisie sont notre signature, mais c'est le savoir faire qui sait nous demarquer a chaque fois. Les estimations sont generalement gratuite, mais des exceptions peuvent etre a envisager. Nous desservons la rive sud centre et les environs. (Des frais de déplacement s'appliquent hors zone).",
+                contact_title: "Contactez-Nous",
+                contact_subtitle: "Laissez-nous un email",
+                contact_photos: "Ajouter des photos",
+                contact_photo_note: "Note : Les photos et/ou plans de votre choix pourront être ajoutés manuellement après validation.",
+                contact_newsletter: "Inscrivez-vous à nos info lettres par Email en un seul clic.",
+                contact_send: "Envoyer",
+                section_trust: "Ils nous font confiance",
+                section_location: "LOCATION",
+                hours_title: "Heures d'ouverture",
+                hours_calls: "Appels (7/7)",
+                hours_jobs_wk: "Travaux (Lun-Ven)",
+                hours_jobs_sat: "Travaux (Sam)",
+                hours_jobs_sun: "Travaux (Dim)",
+                nav_team: "Equipe",
+                footer_privacy: "Politiques de confidentialité",
+                footer_terms: "Les termes d'usage",
+                cookie_msg: "Nous utilisons un service de tracage Google et Google Adsens pour rentabiliser nos annonces publicitaires et aussi pour rendre ces derniere plus efficace. Merci de votre comprehension.",
+                cookie_btn: "Continuer"
+            },
+            en: {
+                nav_home: "Home",
+                nav_plumbing: "Plumbing",
+                nav_expertise: "Expertise",
+                nav_help: "Help",
+                nav_contact: "Contact",
+                change_theme: "Change Theme",
+                hero_title: "WELCOME TO <br>PLOMBERIE <br>MARTIN BOISVERT",
+                hero_subtitle: "Specialized in residential plumbing, Martin Boisvert is your plumber on the South Shore of Montreal",
+                cta_phone: "Contact us by <u>phone</u>",
+                cta_email: "Or <u>email</u> us",
+                section_plumbing: "The Plumbing",
+                copper_title: "COPPER PIPING",
+                copper_desc: "Still the only material accepted in Westmount, Island of Montreal. Stronger and as durable as PEX. More expensive, but also more elegant.",
+                plumber_title: "A Plumber",
+                plumber_desc: "All our plumbers are well trained and adequately equipped with all necessary tools for scheduled work.",
+                valve_title: "Backwater Valve",
+                valve_desc: "Backwater valve installation on water supply lines shown above. Note that installation on drainage lines is also possible.",
+                section_expertise: "Expertise and Quality",
+                repair_title: "Repair",
+                repair_desc: "Fast service for all breaks and emergencies.",
+                reno_title: "Renovation",
+                reno_desc: "Modernization of bathrooms and kitchens.",
+                resid_title: "Residential",
+                resid_desc: "Complete solutions for your home.",
+                comm_title: "Commercial",
+                comm_desc: "Maintenance and installation for businesses.",
+                section_help: "Help",
+                help_intro: "If you still have questions, simply reach us either by",
+                help_phone: "phone",
+                help_or: ", or by",
+                help_email: "email",
+                help_then: ". Or, for a",
+                help_fast: "faster",
+                help_by: "response, by",
+                help_sms: "SMS",
+                faq_q1: "No water?",
+                faq_a1: "Call us at the number listed at the top or bottom of the page.",
+                faq_q2: "Smell odors?",
+                faq_a2: "If easier for you, send us an SMS at the same number.",
+                faq_q3: "Need a quote?",
+                faq_a3: "We are also reachable by email at: <a href='mailto:plomberiemartinboisvert@gmail.com' class='text-websiteBlue hover:underline'>plomberiemartinboisvert@gmail.com</a>",
+                try_us_title: "Try Us !!",
+                try_us_desc: "Experience unmatched plumbing service. Reasonable prices. A master plumber who has already accumulated more than 35 years of service. For further information regarding the team, please refer to the page in question by following the shortcut at the bottom of the page. Plomberie Martin Boisvert is based on the South Shore of Montreal and is ready to intervene quickly for all your residential needs. Quality, cleanliness, and courtesy are our signature, but it is our know-how that sets us apart every time. Estimates are generally free, but exceptions may apply. We serve the central South Shore and surrounding areas. (Travel fees apply outside zone).",
+                contact_title: "Contact Us",
+                contact_subtitle: "Leave us an email",
+                contact_photos: "Add photos",
+                contact_photo_note: "Note: Photos and/or plans of your choice can be added manually after validation.",
+                contact_newsletter: "Subscribe to our newsletters via Email in one click.",
+                contact_send: "Send",
+                section_trust: "They trust us",
+                section_location: "LOCATION",
+                hours_title: "Opening Hours",
+                hours_calls: "Calls (7/7)",
+                hours_jobs_wk: "Jobs (Mon-Fri)",
+                hours_jobs_sat: "Jobs (Sat)",
+                hours_jobs_sun: "Jobs (Sun)",
+                nav_team: "Team",
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Use",
+                cookie_msg: "We use a Google tracking service and Google AdSense to monetize our ads and make them more effective. Thank you for your understanding.",
+                cookie_btn: "Continue"
+            }
+        };
+
+        let currentLang = 'fr';
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const mobileLangToggle = document.getElementById('mobile-lang-toggle');
+        const currentLangSpan = document.getElementById('current-lang');
+        const mobileCurrentLangSpan = document.getElementById('mobile-current-lang');
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            currentLangSpan.textContent = lang === 'fr' ? 'EN' : 'FR';
+            mobileCurrentLangSpan.textContent = lang === 'fr' ? 'EN' : 'FR';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            updateLanguage(currentLang);
+        }
+
+        langToggleBtn.addEventListener('click', toggleLanguage);
+        mobileLangToggle.addEventListener('click', toggleLanguage);
+
+        // --- Dark Mode Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+            localStorage.setItem('color-theme', theme);
+        }
+
+        // Init Theme
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        // --- Slider Background ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function rotateSlides() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(rotateSlides, 6000);
+
+        // --- Mobile Menu Toggle ---
+        const toggle = document.getElementById('mobile-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Accordion Logic ---
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('.rotate-icon');
+            content.classList.toggle('open');
+            icon.classList.toggle('active');
+        }
+
+        // --- Navbar Scroll Auto-Hide ---
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 80) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // --- Phone Number Formatting ---
+        const phoneInput = document.getElementById('phoneInput');
+        phoneInput.addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ')' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // --- Mailto Help Function ---
+        function sendHelpEmail(e) {
+            e.preventDefault();
+            const date = new Date().toLocaleString();
+            window.location.href = `mailto:plomberiemartinboisvert@gmail.com?subject=probleme ${date}`;
+        }
+
+        // --- File Validation ---
+        function validateFiles(input) {
+            const files = input.files;
+            let valid = true;
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].size > 25 * 1024 * 1024) {
+                    alert("Le fichier " + files[i].name + " est trop volumineux (max 25MB).");
+                    valid = false;
+                }
+            }
+            if (!valid) input.value = "";
+        }
+
+        // --- Form Submission ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const phone = document.getElementById('phoneInput').value;
+            const message = document.getElementById('messageInput').value.trim();
+
+            if (name.length < 6 || !name.includes(' ')) {
+                alert("Le nom doit contenir au moins 6 caractères et un espace.");
+                return;
+            }
+
+            // Updated Regex: allows 2+ chars in domain and extension
+            const emailRegex = /^[a-zA-Z0-9]{2,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$/;
+            if (email && !emailRegex.test(email)) {
+                alert("Format email invalide. (Ex: aa1@abc.def)");
+                return;
+            }
+
+            const rawPhone = phone.replace(/\D/g, '');
+            if (phone && rawPhone.length !== 10) {
+                alert("Le numéro de téléphone doit contenir 10 chiffres.");
+                return;
+            }
+
+            if (!email && !phone) {
+                alert("Veuillez fournir au moins un email ou un numéro de téléphone.");
+                return;
+            }
+
+            if (message.length < 10 || message.length > 200) {
+                alert("Le message doit contenir entre 10 et 200 caractères.");
+                return;
+            }
+
+            const subject = encodeURIComponent("Contact via Site Web: " + name);
+            const body = encodeURIComponent(
+                "Nom: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Téléphone: " + phone + "\n\n" +
+                "Message:\n" + message
+            );
+
+            window.location.href = "mailto:plomberiemartinboisvert@gmail.com?subject=" + subject + "&body=" + body;
+            
+            const files = document.getElementById('fileInput').files;
+            if(files.length > 0) {
+                alert("Votre client de messagerie va s'ouvrir. Veuillez ne pas oublier de joindre vos photos manuellement.");
+            }
+        }
+
+        // --- Scroll Reveal Logic ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // --- Cookie Banner Logic ---
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptCookieBtn = document.getElementById('cookie-accept');
+
+        // Force check: if not accepted, show after 1s
+        if (!localStorage.getItem('cookies-accepted')) {
+            setTimeout(() => {
+                cookieBanner.classList.remove('translate-y-full');
+            }, 1000); 
+        }
+
+        acceptCookieBtn.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', 'true');
+            cookieBanner.classList.add('translate-y-full');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = document.querySelector('nav').offsetHeight;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                    menu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

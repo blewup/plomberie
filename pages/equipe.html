@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe | Plomberie Martin Boisvert</title>
+    <link rel="icon" type="image/x-icon" href="../images/logo/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { ony: '#0F0F10', websiteBlue: '#1E3A8A' },
+                    fontFamily: { header: ['Black Ops One', 'system-ui'], sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    borderRadius: { 'custom': '15px' }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face { font-family: 'Black Ops One'; src: url('../fonts/BlackOps.ttf') format('truetype'); }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('../fonts/PlusJakartaSans.ttf') format('truetype'); }
+        .glass-nav { backdrop-filter: blur(12px); transition: transform 0.3s ease-in-out; }
+        .radius-override { border-radius: 15px !important; }
+        .hover-scale:hover { transform: scale(1.05); transition: transform 0.2s; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-[#0F0F10] dark:text-[#E5E5E5] transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-gray-200 dark:border-white/5 h-16 flex items-center bg-white/90 dark:bg-[#0F0F10]/90">
+        <div class="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="../index.html" class="flex flex-col leading-none hover-scale">
+                <span class="text-sm font-header dark:text-white">PLOMBERIE</span>
+                <span class="text-base font-extrabold text-blue-600 dark:text-blue-500">MARTIN BOISVERT</span>
+            </a>
+            <div class="flex gap-4">
+                <button id="theme-toggle" class="p-2 radius-override hover:bg-gray-200 dark:hover:bg-white/10 transition hover-scale">
+                    <span class="text-xs font-bold uppercase">Thème</span>
+                </button>
+                <button id="lang-toggle" class="p-2 radius-override bg-gray-200 dark:bg-white/10 font-bold hover-scale w-10 h-10 flex items-center justify-center">
+                    <span id="current-lang">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden bg-gray-900">
+        <div class="absolute inset-0 z-0">
+            <img src="../images/slide/slide_03.webp" class="w-full h-full object-cover opacity-60 dark:opacity-40">
+        </div>
+        <div class="relative z-10 w-full max-w-7xl px-6 mx-auto">
+            <h1 class="text-4xl md:text-6xl font-header text-white drop-shadow-xl" data-translate="page_title">Notre Équipe</h1>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <!-- Martin -->
+            <div class="bg-white dark:bg-white/5 p-8 radius-override border border-gray-200 dark:border-white/10 shadow-2xl flex flex-col items-center text-center hover-scale transition duration-300">
+                <img src="../images/people/Martin_Boisvert.png" alt="Martin Boisvert" class="w-48 h-48 radius-override object-cover mb-6 border-4 border-blue-600 shadow-lg">
+                <h2 class="text-2xl font-header text-blue-600 dark:text-blue-500 uppercase mb-2">Martin Boisvert</h2>
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6" data-translate="martin_role">Maître Plombier & PDG</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed" data-translate="martin_bio">
+                    À 56 ans, Martin cumule plus de 45 ans d'expérience, dont 35 ans en tant que maître plombier. Fils de plombier, il a débuté jeune aux côtés de son père. Suite à des divergences d'opinions, il a fondé sa propre entreprise, perpétuant l'excellence paternelle sous une nouvelle bannière.
+                </p>
+            </div>
+
+            <!-- Cedrick -->
+            <div class="bg-white dark:bg-white/5 p-8 radius-override border border-gray-200 dark:border-white/10 shadow-2xl flex flex-col items-center text-center hover-scale transition duration-300">
+                <img src="../images/people/Cedrick_Boisvert.png" alt="Cedrick Boisvert" class="w-48 h-48 radius-override object-cover mb-6 border-4 border-blue-600 shadow-lg">
+                <h2 class="text-2xl font-header text-blue-600 dark:text-blue-500 uppercase mb-2">Cedrick Boisvert</h2>
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6" data-translate="cedrick_role">Manœuvre Spécialisé</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed" data-translate="cedrick_bio">
+                    Dans la fin de la vingtaine, Cédrick possède près de 10 ans d'expérience. Passionné de belles voitures, il travaille avec une efficacité redoutable. Il sait gérer son temps à la perfection et trouve toujours le moyen d'accomplir le travail dans les délais impartis.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-4 border-t border-gray-200 dark:border-white/5 text-center text-xs text-gray-500">
+        <p>&copy; 2025 Plomberie Martin Boisvert. <a href="../index.html" class="underline">Retour à l'accueil</a></p>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: {
+                page_title: "Notre Équipe",
+                martin_role: "Maître Plombier & PDG",
+                martin_bio: "À 56 ans, Martin cumule plus de 45 ans d'expérience, dont 35 ans en tant que maître plombier. Fils de plombier, il a débuté jeune aux côtés de son père. Suite à des divergences d'opinions, il a fondé sa propre entreprise, perpétuant l'excellence paternelle sous une nouvelle bannière.",
+                cedrick_role: "Manœuvre Spécialisé",
+                cedrick_bio: "Dans la fin de la vingtaine, Cédrick possède près de 10 ans d'expérience. Passionné de belles voitures, il travaille avec une efficacité redoutable. Il sait gérer son temps à la perfection et trouve toujours le moyen d'accomplir le travail dans les délais impartis."
+            },
+            en: {
+                page_title: "Our Team",
+                martin_role: "Master Plumber & CEO",
+                martin_bio: "At 56 years old, Martin has over 45 years of experience, including 35 years as a master plumber. He started young as his father's employee. After some divergent opinions, Martin decided to start his own company, pursuing the old paternal purposes under a different banner.",
+                cedrick_role: "Specialized Labor",
+                cedrick_bio: "In his late twenties, Cedrick has almost ten years of experience as a plumber. He likes nice cars and working efficiently. He knows how to manage his time well and always finds a way to get the job done within the time it takes to do it."
+            }
+        };
+
+        let currentLang = 'fr';
+        
+        function updateContent() {
+            document.querySelector('[data-translate="page_title"]').textContent = translations[currentLang].page_title;
+            document.querySelector('[data-translate="martin_role"]').textContent = translations[currentLang].martin_role;
+            document.querySelector('[data-translate="martin_bio"]').textContent = translations[currentLang].martin_bio;
+            document.querySelector('[data-translate="cedrick_role"]').textContent = translations[currentLang].cedrick_role;
+            document.querySelector('[data-translate="cedrick_bio"]').textContent = translations[currentLang].cedrick_bio;
+            document.getElementById('current-lang').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+        }
+
+        document.getElementById('lang-toggle').onclick = () => { currentLang = currentLang === 'fr' ? 'en' : 'fr'; updateContent(); };
+        
+        // Theme
+        if (localStorage.getItem('color-theme') === 'dark') document.documentElement.classList.add('dark');
+        document.getElementById('theme-toggle').onclick = () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        };
+    </script>
+</body>
+</html>
