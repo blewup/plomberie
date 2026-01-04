@@ -101,8 +101,7 @@
         /* --- Z-INDEX LAYERING --- */
         #section-1-hero { z-index: 10; }
         #section-2-plomberie { z-index: 20; }
-        #section-3-expertise { z-index: 30; pointer-events: none; } /* Background section */
-        #section-3-expertise > div { pointer-events: auto; }
+        #section-3-expertise { z-index: 25; pointer-events: none; } /* Background section */
         #section-4-aide { z-index: 40; }
         #section-5-contact { z-index: 50; }
         #temoignages-location-wrapper { z-index: 60; position: relative; background: transparent; }
@@ -118,16 +117,33 @@
         html:not(.dark) #section-4-aide { background-color: #F2F2F2; }
 
         /* --- EXPERTISE BACKGROUND (Parallax) --- */
-        /* This section needs to be transparent to show the fixed bg, but have content */
+        /* This section needs to be transparent to show the sticky bg, but have content */
         #section-3-expertise { background: transparent !important; }
-        /* The fixed background element */
-        #section-3-expertise::before { 
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background-size: cover; background-position: center; background-repeat: no-repeat; 
-            will-change: transform; 
+        .expertise-layer { position: relative; width: 100%; height: 100%; }
+        .expertise-bg-layer {
+            position: sticky;
+            top: 0;
+            height: 96vh;
+            margin: 2vh 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: 0;
+            pointer-events: none;
         }
-        html:not(.dark) #section-3-expertise::before { background-image: url('images/topic/expertise-light.png'); }
-        html.dark #section-3-expertise::before { background-image: url('images/topic/expertise-dark.png'); }
+        html:not(.dark) .expertise-bg-layer { background-image: url('images/topic/expertise-light.png'); }
+        html.dark .expertise-bg-layer { background-image: url('images/topic/expertise-dark.png'); }
+        .expertise-content {
+            position: relative;
+            z-index: 2;
+            pointer-events: auto;
+            height: 96vh;
+            margin: 2vh 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         /* Reveal Logic for Expertise Content */
         .reveal-expertise { opacity: 0; transition: opacity 0.5s ease-out; }
@@ -396,51 +412,53 @@
         </div>
     </section>
 
-    <!-- SECTION 3: EXPERTISE (Fixed Background) -->
+    <!-- SECTION 3: EXPERTISE (Parallax Background) -->
     <section id="section-3-expertise" class="sticky-section flex items-center transition-colors duration-300 select-none">
-        <div class="w-full py-12 md:py-20 px-6 max-w-[4096px] mx-auto reveal-expertise flex items-center justify-center h-full">
-            <div class="max-w-7xl mx-auto relative group w-full text-center">
-                <!-- Title always Black per user request on Index.html, but let's stick to theme for contrast on bg -->
-                <h3 class="text-4xl md:text-6xl font-header text-black dark:text-white uppercase drop-shadow-xl tracking-widest mb-16" data-translate="section_expertise">Expertise et Qualité</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <!-- Repair -->
-                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                        <img src="images/topic/winter.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Réparation">
-                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="repair_title">Réparation</h4>
-                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="repair_desc">Service rapide pour tous vos bris et urgences.</p>
+        <div class="expertise-layer">
+            <div class="expertise-bg-layer" aria-hidden="true"></div>
+            <div class="expertise-content w-full py-12 md:py-20 px-6 max-w-[4096px] mx-auto reveal-expertise">
+                <div class="max-w-7xl mx-auto relative group w-full text-center">
+                    <!-- Title always Black per user request on Index.html, but let's stick to theme for contrast on bg -->
+                    <h3 class="text-4xl md:text-6xl font-header text-black dark:text-white uppercase drop-shadow-xl tracking-widest mb-16" data-translate="section_expertise">Expertise et Qualité</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                        <!-- Repair -->
+                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
+                            <img src="images/topic/winter.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Réparation">
+                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="repair_title">Réparation</h4>
+                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="repair_desc">Service rapide pour tous vos bris et urgences.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Reno -->
-                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                        <img src="images/topic/reno.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Rénovation">
-                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="reno_title">Rénovation</h4>
-                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="reno_desc">Modernisation de salles de bain et cuisines.</p>
+                        <!-- Reno -->
+                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
+                            <img src="images/topic/reno.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Rénovation">
+                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="reno_title">Rénovation</h4>
+                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="reno_desc">Modernisation de salles de bain et cuisines.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Residential -->
-                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                        <img src="images/topic/residentiel.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Résidentielle">
-                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="resid_title">Résidentielle</h4>
-                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="resid_desc">Solutions complètes pour votre maison.</p>
+                        <!-- Residential -->
+                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
+                            <img src="images/topic/residentiel.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Résidentielle">
+                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="resid_title">Résidentielle</h4>
+                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="resid_desc">Solutions complètes pour votre maison.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Commercial -->
-                    <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                        <img src="images/topic/commercial.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Commerciale">
-                        <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                            <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="comm_title">Commerciale</h4>
-                            <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="comm_desc">Entretien et installation pour entreprises.</p>
+                        <!-- Commercial -->
+                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
+                            <img src="images/topic/commercial.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Commerciale">
+                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
+                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="comm_title">Commerciale</h4>
+                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="comm_desc">Entretien et installation pour entreprises.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- SECTION 4: AIDE -->
     <section id="section-4-aide" class="sticky-section flex items-center transition-colors duration-300 select-none">
         <div class="w-full py-8 md:py-12 px-6 max-w-[4096px] mx-auto">
