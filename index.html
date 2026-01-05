@@ -26,11 +26,23 @@
       gtag('config', 'G-TFKX6YXZ0T');
     </script>
 
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1565073845141838" crossorigin="anonymous"></script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/logo/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/logo/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo/apple-touch-icon.png">
+    <meta name="msapplication-TileColor" id="msapplication-TileColor">
+    <meta name="msapplication-TileImage" content="images/logo/mstile-150x150.png">
+    <link rel="manifest" href="images/logo/site.webmanifest">
     
     <!-- Tailwind Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -66,22 +78,52 @@
     </script>
 
     <style>
-        /* --- FONTS --- */
+        
+        /* --- META THEME COLOR DYNAMIC SWITCHING --- */
+        html:not(.dark) msapplication-TileColor { background-color: #FFFFFF; }
+        html.dark .msapplication-TileColor { background-color: #000000; }
+        
+        /* --- FONTS IMPORTS --- */
         @font-face { font-family: 'Black Ops One'; src: url('fonts/BlackOps.ttf') format('truetype'); font-display: swap; }
         @font-face { font-family: 'Comic Sans MS'; src: url('fonts/ComicSansMS.ttf') format('truetype'); font-display: swap; }
         @font-face { font-family: 'Impact'; src: url('fonts/Impact.ttf') format('truetype'); font-display: swap; }
         @font-face { font-family: 'Merriweather'; src: url('fonts/Merriweather.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         @font-face { font-family: 'Plus Jakarta Sans'; src: url('fonts/PlusJakartaSans.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
 
+        /* --- RESET & BASE STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* --- SCROLLBAR STYLES --- */
+        
+        /* Webkit Browsers */
+        html:not(.dark) ::-webkit-scrollbar { width: 12px; }
+        html:not(.dark) ::-webkit-scrollbar-track { background: transparent; }
+        html:not(.dark) ::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.5); border-radius: 6px; border: 1px solid transparent; background-clip: content-box; transition: background-color 0.3s; }
+        html:not(.dark) ::-webkit-scrollbar-thumb:hover { background-color: rgba(0, 0, 0, 0.85); transform: scale(1.1); }
+        html.dark ::-webkit-scrollbar { width: 12px; }
+        html.dark ::-webkit-scrollbar-track { background: transparent; }
+        html.dark ::-webkit-scrollbar-thumb { background-color: rgba(155, 155, 155, 0.5); border-radius: 6px; border: 1px solid transparent; background-clip: content-box; transition: background-color 0.3s; }
+        html.dark ::-webkit-scrollbar-thumb:hover { background-color: rgba(155, 155, 155, 0.85); transform: scale(1.1); }
+        
+        /* Firefox */
+        html:not(.dark) * { scrollbar-width: 12px; scrollbar-color: rgba(0, 0, 0, 0.5) transparent; } 
+        html:not(.dark) *:hover { scrollbar-color: rgba(0, 0, 0, 0.85) transparent; transform: scale(1.1); }
+        html.dark * { scrollbar-width: 12px; scrollbar-color: rgba(155, 155, 155, 0.5) transparent; } 
+        html.dark *:hover { scrollbar-color: rgba(155, 155, 155, 0.85) transparent; transform: scale(1.1); }
+
+        /* --- SCROLLBAR COLORS --- */
+        html:not(.dark) :root { --scrollbar-thumb-bg: rgba(0, 0, 0, 0.5); --scrollbar-thumb-hover-bg: rgba(0, 0, 0, 0.85); --scrollbar-track-bg: rgba(0, 0, 0, 0); --scrollbar-track-hover-bg: rgba(0, 0, 0, 0); --scrollbar-thumb-border-radius: 6px; --scrollbar-thumb-hover-scale: 1.1; }
+        html.dark :root { --scrollbar-thumb-bg: rgba(155, 155, 155, 0.5); --scrollbar-thumb-hover-bg: rgba(155, 155, 155, 0.85); --scrollbar-track-bg: rgba(0, 0, 0, 0); --scrollbar-track-hover-bg: rgba(0, 0, 0, 0); --scrollbar-thumb-border-radius: 6px; --scrollbar-thumb-hover-scale: 1.1;  }    
+
         /* --- GLOBAL & UTILS --- */
         body { user-select: none; -webkit-user-select: none; overflow-x: hidden; }
         input, textarea, .selectable-text, .place-card * { user-select: text; -webkit-user-select: text; }
-        img { user-select: none; -webkit-user-drag: none; pointer-events: none; }
+        img { user-select: none; -webkit-user-drag: none; pointer-events: all; cursor:pointer; }
         a { cursor: pointer; }
         
         .radius-override, .rounded-full, .rounded-3xl, .rounded-2xl { border-radius: 20px !important; }
         .hover-scale { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .hover-scale:hover { transform: scale(1.05); }
+        .hover-scale:hover { transform: scale(1.05); cursor: pointer;}
 
         /* --- STICKY SECTIONS LOGIC --- */
         /* Each section sticks to top. Siblings stack on top of each other. */
@@ -91,7 +133,8 @@
             width: 100%; 
             /* Default to viewport height for desktop */
             height: 100vh; 
-            overflow: hidden; 
+            overflow-x: hidden;
+            overflow-y: none; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -99,22 +142,33 @@
         }
 
         /* --- Z-INDEX LAYERING --- */
-        #section-1-hero { z-index: 10; }
-        #section-2-plomberie { z-index: 20; }
-        #section-3-expertise { z-index: 25; pointer-events: none; } /* Background section */
-        #section-4-aide { z-index: 40; }
-        #section-5-contact { z-index: 50; }
-        #temoignages-location-wrapper { z-index: 60; position: relative; background: transparent; }
+        #section-1-hero { z-index: 10;  position: sticky; pointer-events: all; }
+        #section-2-plomberie { z-index: 20; position: sticky; pointer-events: all; }
+        #section-3-expertise { z-index: 25; position: sticky; pointer-events: all; } /* Background section */
+        #section-3-expertise > div { z-index: 30; position: sticky; pointer-events: all; }
+        #section-4-aide { z-index: 40; position: sticky; pointer-events: all; }
+        #section-5-contact { z-index: 50; position: sticky; pointer-events: all; }
+        #section-6-temoignages { z-index: 60; position: relative; pointer-events: all; }
+        #section-7-location { z-index: 60; position: relative; pointer-events: all; }
 
         /* --- BACKGROUND COLORS --- */
         /* Dark Mode */
-        .dark #section-1-hero { background-color: #000000; }
-        .dark #section-2-plomberie { background-color: #131313; }
-        .dark #section-4-aide { background-color: #131313; }
+        .dark #section-1-hero { background-color: #000000; color: #F2F2F2; }
+        .dark #section-2-plomberie { background-color: #131313; color: #FFFFFF; }
+        .dark #section-3-expertise { background-color: #000000; color: #F2F2F2; }
+        .dark #section-4-aide { background-color: #131313; color: #FFFFFF; }
+        .dark #section-5-contact { background-color: #000000; color: #F2F2F2; }
+        .dark #section-6-temoignages { background-color: #131313; color: #FFFFFF; }
+        .dark #section-7-location { background-color: #000000; color: #F2F2F2; }
+
         /* Light Mode */
-        html:not(.dark) #section-1-hero { background-color: #FFFFFF; }
-        html:not(.dark) #section-2-plomberie { background-color: #F2F2F2; }
-        html:not(.dark) #section-4-aide { background-color: #F2F2F2; }
+        html:not(.dark) #section-1-hero { background-color: #FFFFFF; color: #131313; }
+        html:not(.dark) #section-2-plomberie { background-color: #F2F2F2; color: #000000; }
+        html:not(.dark) #section-3-expertise { background-color: #FFFFFF; color: #131313; }
+        html:not(.dark) #section-4-aide { background-color: #F2F2F2; color: #000000; }
+        html:not(.dark) #section-5-contact { background-color: #FFFFFF; color: #131313; }
+        html:not(.dark) #section-6-temoignages { background-color: #F2F2F2; color: #000000; }
+        html:not(.dark) #section-7-location { background-color: #FFFFFF; color: #131313; }
 
         /* --- EXPERTISE BACKGROUND (Parallax) --- */
         /* This section needs to be transparent to show the sticky bg, but have content */
@@ -167,9 +221,6 @@
                 padding: 13.5% 13.75% 10% 13.75%; 
             } 
         }
-        /* Subsection Themes */
-        .dark .contact-subsection-bg { background-color: #000000; }
-        html:not(.dark) .contact-subsection-bg { background-color: #FFFFFF; }
 
         /* Portrait/Mobile Logic (< 1000px width approx or portrait aspect) */
         @media (max-aspect-ratio: 16/11), (max-width: 1024px) { 
@@ -226,6 +277,7 @@
 
         /* --- TEXT STYLES --- */
         /* Thin black outline for white/grey text */
+        .text-outline { text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000; }
         .text-outline-thin { text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000; }
         
         /* --- READ MORE / TRUNCATE --- */
@@ -334,7 +386,8 @@
 
         <!-- Slideshow Background -->
         <div class="absolute inset-0 z-0 pointer-events-none">
-            <div class="slide active"><img src="images/slide/slide_01.webp" alt="Plomberie"></div>
+            <div class="slide active"><img src="images/slide/slide_00.png" alt="Martin"></div>
+            <div class="slide"><img src="images/slide/slide_01.webp" alt="Plomberie"></div>
             <div class="slide"><img src="images/slide/slide_02.webp" alt="Outillage"></div>
             <div class="slide"><img src="images/slide/slide_03.webp" alt="Installation"></div>
             <div class="slide"><img src="images/slide/slide_04.webp" alt="Rénovation"></div>
@@ -372,7 +425,7 @@
     <!-- SECTION 2: PLOMBERIE -->
     <section id="section-2-plomberie" class="sticky-section flex items-center transition-colors duration-300 select-none">
         <!-- Moved Content 10px higher with -translate-y-[10px] -->
-        <div class="w-full py-8 md:py-12 px-6 max-w-[4096px] mx-auto flex flex-col justify-center h-full transform -translate-y-[10px]">
+        <div class="w-full py-2 md:py-2 px-6 max-w-[4096px] mx-auto flex flex-col justify-center h-full transform -translate-y-[10px]">
             <div class="max-w-7xl mx-auto w-full">
                 <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white text-center mb-12 uppercase tracking-wider" data-translate="section_plumbing">La Plomberie</h2>
                 
@@ -414,9 +467,10 @@
 
     <!-- SECTION 3: EXPERTISE (Parallax Background) -->
     <section id="section-3-expertise" class="sticky-section flex items-center transition-colors duration-300 select-none">
-        <div class="expertise-layer">
-            <div class="expertise-bg-layer" aria-hidden="true"></div>
-            <div class="expertise-content w-full py-12 md:py-20 px-6 max-w-[4096px] mx-auto reveal-expertise">
+        <!-- Background handled by CSS based on theme -->
+        <div class="expertise-layer w-100vw h-100vh py-0 px-0 md:py-0 md:px-0 max-w-[4096px]" aria-hidden="true"></div>
+        <div class="expertise-bg-layer w-100vw h-100vh py-0 px-0 md:py-0 md:px-0 max-w-[4096px] object-cover mx-auto"></div>
+            <div class="expertise-content w-full py-2 md:py-2 px-6 max-w-[4096px] mx-auto reveal-expertise flex items-center justify-center h-full">
                 <div class="max-w-7xl mx-auto relative group w-full text-center">
                     <!-- Title always Black per user request on Index.html, but let's stick to theme for contrast on bg -->
                     <h3 class="text-4xl md:text-6xl font-header text-black dark:text-white uppercase drop-shadow-xl tracking-widest mb-16" data-translate="section_expertise">Expertise et Qualité</h3>
@@ -459,6 +513,7 @@
             </div>
         </div>
     </section>
+
     <!-- SECTION 4: AIDE -->
     <section id="section-4-aide" class="sticky-section flex items-center transition-colors duration-300 select-none">
         <div class="w-full py-8 md:py-12 px-6 max-w-[4096px] mx-auto">
@@ -522,10 +577,10 @@
         <div class="w-full px-6 contact-wrapper max-w-[4096px] mx-auto">
             
             <!-- ESSAYEZ-NOUS -->
-            <div class="contact-subsection contact-subsection-bg radius-override border border-gray-200 dark:border-white/5 p-6 md:p-10 shadow-2xl backdrop-blur-md select-none">
+            <div class="contact-subsection bg-websiteBlue radius-override border border-gray-200 dark:border-white/5 p-6 md:p-10 shadow-2xl backdrop-blur-md select-none">
                 <!-- Website Blue BG, White Text, Thin Black Outline -->
-                <div class="bg-websiteBlue h-full w-full radius-override p-8 flex flex-col justify-center text-white">
-                    <h3 class="text-3xl font-header mb-8 uppercase text-center text-outline-thin" data-translate="try_us_title">Essayez-Nous !!</h3>
+                <div class="h-full w-full radius-override p-8 flex flex-col justify-center text-white">
+                    <h3 class="text-3xl lg:text-5xl font-header mb-8 uppercase text-red-600 text-center text-outline" data-translate="try_us_title">Essayez-Nous</h3>
                     <div class="leading-relaxed mb-8 text-sm font-medium text-outline-thin">
                         <span class="dynamic-text" data-translate="try_us_desc">
                             Faites l'expérience d'un service de plomberie sans égal. Des prix raisonnable. Un maitre plombier qui accumule deja plus de 35ans de service. Pour de plus amples renseignements concernant l'equipe, veuillez vous referrez a la page en question en suivant le raccourci dans le bas de la page. Plomberie Martin Boisvert est basée sur la Rive-Sud de Montréal, est prête à intervenir rapidement pour tous vos besoins résidentiels. Qualité, propreté et courtoisie sont notre signature, mais c'est le savoir faire qui sait nous demarquer a chaque fois. Les estimations sont generalement gratuite, mais des exceptions peuvent etre a envisager. Nous desservons la rive sud centre et les environs. (Des frais de déplacement s'appliquent hors zone).
@@ -542,10 +597,10 @@
             </div>
 
             <!-- CONTACT FORM -->
-            <div class="contact-subsection contact-subsection-bg radius-override border border-gray-200 dark:border-white/5 shadow-2xl flex items-center justify-center">
+            <div class="contact-subsection radius-override border border-gray-200 dark:border-white/5 shadow-2xl flex items-center justify-center">
                 <div class="contact-form-sync radius-override w-full h-full flex flex-col justify-center">
                     <!-- Title: Red with Thin Black Outline, Same size as Essayez-nous title (approx) -->
-                    <h3 class="text-3xl lg:text-4xl font-header text-red-600 mb-8 uppercase text-center text-outline-thin" data-translate="contact_title">Contactez-Nous</h3>
+                    <h3 class="text-3xl lg:text-5xl font-header text-red-600 mb-8 uppercase text-center text-outline" data-translate="contact_title">Contactez-Nous</h3>
                     
                     <form id="contactForm" class="space-y-6" onsubmit="handleFormSubmit(event)">
                         <h4 class="text-sm font-bold uppercase tracking-widest text-websiteBlue select-none" data-translate="contact_subtitle">Laissez-nous un email</h4>
@@ -581,33 +636,58 @@
         </div>
     </section>
 
-    <!-- WRAPPER FOR NORMAL FLOW SECTIONS (Testimonials + Location) -->
-    <div id="temoignages-location-wrapper" class="normal-flow-wrapper">
 
-        <!-- SECTION TEMOIGNAGES -->
-        <section id="temoignages" class="py-12 px-6 w-full max-w-[4096px] mx-auto select-none">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white text-center mb-8 uppercase tracking-wider" data-translate="section_testimonials">TEMOIGNAGES</h2>
-                <!-- Active testimonial styling handled in JS/CSS (smaller scale, border radius) -->
-                <div id="testimonials-container" class="relative overflow-hidden w-full h-[400px] my-4"></div>
-            </div>
-        </section>
+    <!-- SECTION TEMOIGNAGES -->
+    <section id="section-6-temoignages" class="normal-flow transition-colors py-2 md:py-2 px-6 w-full max-w-[4096px] mx-auto select-none">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-header text-gray-900 dark:text-white text-center mb-16 uppercase tracking-wider" data-translate="section_testimonials">TEMOIGNAGES</h2>
+            <div id="testimonials-container" class="relative overflow-hidden w-full h-[400px]"><div class="absolute top-0 h-full p-4 transition-all duration-500 ease-in-out flex flex-col justify-center items-center text-center z-0 scale-90 opacity-60 bg-white/50 dark:bg-white/5" style="width: 25%; left: 0%; border-radius: 20px;">
+                        <img src="images/people/Justine_Deneuve-1x1.png" class="w-24 h-24 radius-override mb-4 border-4 border-websiteBlue object-cover">
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Justine Deneuve</h4>
+                        <div class="flex justify-center text-yellow-400 mb-2 gap-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-gray-600 dark:text-gray-300 italic text-sm">"Respectueux des idées client, peu importe leurs grandeurs."</p>
+                        
+                    </div><div class="absolute top-0 h-full p-4 transition-all duration-500 ease-in-out flex flex-col justify-center items-center text-center 
+                                      z-10 scale-110 opacity-100 border-2 border-cardinal shadow-active bg-white dark:bg-white/10" style="width: 25%; left: 25%; border-radius: 20px;">
+                        <img src="images/people/Real_Marquis-1x1.png" class="w-24 h-24 radius-override mb-4 border-4 border-websiteBlue object-cover">
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Real Marquis</h4>
+                        <div class="flex justify-center text-yellow-400 mb-2 gap-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-gray-600 dark:text-gray-300 italic text-sm">"Travail propre et minutieux. Une équipe à l'écoute."</p>
+                        <div class="mt-4 flex gap-2 justify-center"><div class="w-3 h-3 rounded-full bg-cardinal"></div><div class="w-3 h-3 rounded-full bg-websiteBlue"></div></div>
+                    </div><div class="absolute top-0 h-full p-4 transition-all duration-500 ease-in-out flex flex-col justify-center items-center text-center 
+                                      z-0 scale-90 opacity-60 bg-white/50 dark:bg-white/5" style="width: 25%; left: 50%; border-radius: 20px;">
+                        <img src="images/people/Mathieu_Lavallee-1x1.png" class="w-24 h-24 radius-override mb-4 border-4 border-websiteBlue object-cover">
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Mathieu Lavallee</h4>
+                        <div class="flex justify-center text-yellow-400 mb-2 gap-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-gray-600 dark:text-gray-300 italic text-sm">"Propre et efficace."</p>
+                        
+                    </div><div class="absolute top-0 h-full p-4 transition-all duration-500 ease-in-out flex flex-col justify-center items-center text-center 
+                                      z-0 scale-90 opacity-60 bg-white/50 dark:bg-white/5" style="width: 25%; left: 75%; border-radius: 20px;">
+                        <img src="images/people/Melanie_Lazure-1x1.png" class="w-24 h-24 radius-override mb-4 border-4 border-websiteBlue object-cover">
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Melanie Lazure</h4>
+                        <div class="flex justify-center text-yellow-400 mb-2 gap-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-gray-600 dark:text-gray-300 italic text-sm">"De vrais professionnels."</p>
+                        
+                    </div></div>
+            <div class="flex justify-center mt-6 gap-2" id="testimonials-dots"><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-cardinal scale-125"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button><button class="h-3 w-3 rounded-full transition-all duration-300 bg-websiteBlue opacity-50"></button></div>
+        </div>
+    </section>
 
-        <!-- SECTION LOCATION -->
-        <section id="location" class="py-12 px-6 w-full max-w-[4096px] mx-auto select-none">
-            <div class="max-w-7xl mx-auto relative">
-                <div class="w-full aspect-[16/7] radius-override overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 relative bg-white dark:bg-black">
+    <!-- SECTION LOCATION -->
+    <section id="section-7-location" class="transition-colors py-2 px-6 w-full max-w-[4096px] mx-auto select-none">
+        <div class="max-w-7xl mx-auto relative">
+            <div class="w-full aspect-[16/7] radius-override overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 relative bg-white dark:bg-black">
                     
-                    <!-- ADD_01 INTEGRATION (Left Side Overlay) -->
-                    <!-- Full height minus 5px top/bottom/left margin -->
-                    <div class="map-overlay-panel" style="pointer-events: auto;">
-                         <!-- Image Header -->
-                         <div class="w-full h-40 relative overflow-hidden">
-                             <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJfQG2o9tK8_E1dVd_eJWDMg9gR9_3alYRDsEGXhU_e3P-DM46qwqEctQOIiUxaAa_2eWJY1r7mwXH3l5oWYz2GAd2dvS9tHHeY8lpNvXsQsb2M_dDKYLC_hdUcBNmnchfpL44Kw=w408-h544-k-no" class="absolute w-full h-full object-cover">
-                         </div>
+                <!-- ADD_01 INTEGRATION (Left Side Overlay) -->
+                <!-- Full height minus 5px top/bottom/left margin -->
+                <div class="map-overlay-panel" style="pointer-events: auto;">
+                    <!-- Image Header -->
+                    <div class="w-full h-40 relative overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJfQG2o9tK8_E1dVd_eJWDMg9gR9_3alYRDsEGXhU_e3P-DM46qwqEctQOIiUxaAa_2eWJY1r7mwXH3l5oWYz2GAd2dvS9tHHeY8lpNvXsQsb2M_dDKYLC_hdUcBNmnchfpL44Kw=w408-h544-k-no" class="absolute w-full h-full object-cover">
+                    </div>
                          
-                         <!-- Content -->
-                         <div class="p-5 flex flex-col gap-3 flex-grow overflow-y-auto">
+                    <!-- Content -->
+                        <div class="py-2 px-6 transition-colors bg-white text-black dark:bg-onyx dark:text-[#FFFFFF] flex flex-col gap-3 flex-grow overflow-y-auto">
                             <div>
                                 <h1 class="font-bold text-xl text-black dark:text-white">Plomberie Martin Boisvert</h1>
                                 <div class="text-sm text-gray-600 dark:text-gray-400">Plumber · Sainte-Catherine, QC</div>
@@ -650,11 +730,11 @@
                                 </div>
                                 <div class="flex items-center gap-3 mb-3">
                                     <i class="fas fa-globe text-gray-400 w-5 text-center"></i>
-                                    <a href="http://plomberiemartinboisvert.com" class="hover:underline">plomberiemartinboisvert.com</a>
+                                    <a href="https://plomberiemartinboisvert.com" class="hover:underline">plomberiemartinboisvert.com</a>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <i class="fas fa-phone text-gray-400 w-5 text-center"></i>
-                                    <span>(514) 755-2107</span>
+                                    <span>+1(514)755-2107</span>
                                 </div>
                             </div>
                          </div>
@@ -667,7 +747,7 @@
                         height="100%" 
                         style="border:0;" 
                         allowfullscreen="" 
-                        loading="lazy" 
+                        loading="fast" 
                         referrerpolicy="no-referrer-when-downgrade" 
                         class="map-iframe transition-all duration-300">
                     </iframe>
