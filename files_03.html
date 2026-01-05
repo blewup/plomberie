@@ -271,6 +271,9 @@
         .slide.active { opacity: 1; z-index: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         .slide.active img { animation: kenBurns 7s forwards; }
+        :root { --hero-logo-shrink: 0.28; } /* 360% smaller => ~1/3.6 */
+        .hero-logo { transition: transform 0.35s ease; transform-origin: bottom right; }
+        .hero-logo.hero-logo-shrink { transform: scale(var(--hero-logo-shrink)); }
 
         /* --- TEXT STYLES --- */
         /* Thin black outline for white/grey text */
@@ -310,6 +313,65 @@
         .dark .map-overlay-panel { background-color: #1c1c1c; border: 1px solid rgba(255,255,255,0.1); }
         .map-iframe { filter: invert(0); transition: filter 0.3s; }
         .dark .map-iframe { filter: invert(90%) hue-rotate(180deg) contrast(90%); }
+
+        /* --- EXPERTISE NOTEPAD LAYOUT --- */
+        .expertise-notepad-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        @media (min-width: 900px) and (orientation: landscape) {
+            .expertise-notepad-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        .notepad-card {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3F47CC;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 10px;
+            overflow: hidden;
+        }
+        html:not(.dark) .notepad-card { border-color: rgba(0,0,0,0.08); }
+        .notepad-inner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 4.5;
+            background-color: #3F47CC;
+            background-image: url('images/topic/notepad.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 6px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+        }
+        .notepad-title {
+            margin-top: 6px;
+        }
+        .notepad-heading {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-family: 'Black Ops One', system-ui, sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+        }
+        @media (min-width: 768px) {
+            .notepad-heading { font-size: 1.875rem; line-height: 2.25rem; }
+        }
+        .notepad-body {
+            margin-top: 25%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: left;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden bg-gray-50 text-gray-900 dark:bg-onyx dark:text-[#E5E5E5] transition-colors duration-300">
@@ -393,7 +455,7 @@
 
         <!-- Logo Bottom Right -->
         <div class="absolute bottom-10 right-6 z-20 hover-scale">
-            <img src="images/logo/PMB.png" alt="Logo Plomberie Martin Boisvert" class="h-60 w-auto drop-shadow-lg">
+            <img id="hero-logo" src="images/logo/PMB.png" alt="Logo Plomberie Martin Boisvert" class="h-60 w-auto drop-shadow-lg hero-logo">
         </div>
 
         <!-- Hero Content -->
@@ -472,37 +534,35 @@
                     <!-- Title always Black per user request on Index.html, but let's stick to theme for contrast on bg -->
                     <h3 class="text-4xl md:text-6xl font-header text-black dark:text-white uppercase drop-shadow-xl tracking-widest mb-16" data-translate="section_expertise">Expertise et Qualité</h3>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-4 md:grid-rows-2 gap-x-0 md:gap-x-4 mx-auto">
-                        <!-- Repair -->
-                        <div class="relative overflow-none radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                            <img src="images/topic/winter.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Réparation">
-                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="repair_title">Réparation</h4>
-                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="repair_desc">Service rapide pour tous vos bris et urgences.</p>
+                    <div class="expertise-notepad-grid mx-auto">
+                        <div class="notepad-card hover-scale">
+                            <div class="notepad-inner radius-override">
+                                <h4 class="notepad-heading notepad-title" data-translate="expertise_card1_title">Réparation &amp; Rénovation</h4>
+                                <div class="notepad-body">
+                                    <p class="text-white text-sm md:text-base">
+                                        <span class="font-bold uppercase" data-translate="repair_title">Réparation</span><br>
+                                        <span class="text-white/90" data-translate="repair_desc">Service rapide pour tous vos bris et urgences.</span>
+                                    </p>
+                                    <p class="text-white text-sm md:text-base">
+                                        <span class="font-bold uppercase" data-translate="reno_title">Rénovation</span><br>
+                                        <span class="text-white/90" data-translate="reno_desc">Modernisation de salles de bain et cuisines.</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <!-- Reno -->
-                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                            <img src="images/topic/reno.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Rénovation">
-                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="reno_title">Rénovation</h4>
-                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="reno_desc">Modernisation de salles de bain et cuisines.</p>
-                            </div>
-                        </div>
-                        <!-- Residential -->
-                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                            <img src="images/topic/residentiel.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Résidentielle">
-                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="resid_title">Résidentielle</h4>
-                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="resid_desc">Solutions complètes pour votre maison.</p>
-                            </div>
-                        </div>
-                        <!-- Commercial -->
-                        <div class="relative overflow-hidden radius-override border border-gray-300 dark:border-white/10 h-48 group hover-scale shadow-lg">
-                            <img src="images/topic/commercial.webp" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500" alt="Commerciale">
-                            <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/30">
-                                <h4 class="text-2xl font-header text-blue-300 dark:text-blue-400 uppercase mb-2 shadow-black drop-shadow-md" data-translate="comm_title">Commerciale</h4>
-                                <p class="text-white font-medium text-sm shadow-black drop-shadow-md" data-translate="comm_desc">Entretien et installation pour entreprises.</p>
+                        <div class="notepad-card hover-scale">
+                            <div class="notepad-inner radius-override">
+                                <h4 class="notepad-heading notepad-title" data-translate="expertise_card2_title">Résidentiel &amp; Commercial</h4>
+                                <div class="notepad-body">
+                                    <p class="text-white text-sm md:text-base">
+                                        <span class="font-bold uppercase" data-translate="resid_title">Résidentielle</span><br>
+                                        <span class="text-white/90" data-translate="resid_desc">Solutions complètes pour votre maison.</span>
+                                    </p>
+                                    <p class="text-white text-sm md:text-base">
+                                        <span class="font-bold uppercase" data-translate="comm_title">Commerciale</span><br>
+                                        <span class="text-white/90" data-translate="comm_desc">Entretien et installation pour entreprises.</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -807,7 +867,7 @@
                     nav_home: "Accueil", nav_plumbing: "La Plomberie", nav_expertise: "Expertise", nav_help: "Aide", nav_contact: "Contact",
                     hero_title: "BIENVENU CHEZ <br>PLOMBERIE <br>MARTIN BOISVERT", hero_subtitle: "Spécialisé en plomberie résidentiel, Martin Boisvert est votre plombier sur la rive sud de Montréal",
                     section_plumbing: "La Plomberie", copper_title: "TUYAUX DE CUIVRE", plumber_title: "Un plombier", valve_title: "Backwater Valve",
-                    section_expertise: "Expertise et Qualité", repair_title: "Réparation", reno_title: "Rénovation", resid_title: "Résidentielle", comm_title: "Commerciale",
+                    section_expertise: "Expertise et Qualité", expertise_card1_title: "Réparation & Rénovation", expertise_card2_title: "Résidentiel & Commercial", repair_title: "Réparation", reno_title: "Rénovation", resid_title: "Résidentielle", comm_title: "Commerciale",
                     section_help: "Aide", help_intro: "Si vous avez toujours des questions, veuillez simplement nous joindre soit par", help_phone: "téléphone", help_email: "email", help_sms: "SMS",
                     faq_q1: "Vous n'avez plus d'eau ?", faq_q2: "Vous sentez des odeurs ?", faq_q3: "Vous avez besoin d'une soumission ?",
                     try_us_title: "Essayez-Nous !!", try_us_desc: "Faites l'expérience d'un service de plomberie sans égal. Des prix raisonnable. Un maitre plombier qui accumule deja plus de 35ans de service. Pour de plus amples renseignements concernant l'equipe, veuillez vous referrez a la page en question en suivant le raccourci dans le bas de la page. Plomberie Martin Boisvert est basée sur la Rive-Sud de Montréal, est prête à intervenir rapidement pour tous vos besoins résidentiels. Qualité, propreté et courtoisie sont notre signature, mais c'est le savoir faire qui sait nous demarquer a chaque fois. Les estimations sont generalement gratuite, mais des exceptions peuvent etre a envisager. Nous desservons la rive sud centre et les environs. (Des frais de déplacement s'appliquent hors zone).",
@@ -826,7 +886,7 @@
                     nav_home: "Home", nav_plumbing: "Plumbing", nav_expertise: "Expertise", nav_help: "Help", nav_contact: "Contact",
                     hero_title: "WELCOME TO <br>PLOMBERIE <br>MARTIN BOISVERT", hero_subtitle: "Specialized in residential plumbing, Martin Boisvert is your plumber on the South Shore of Montreal",
                     section_plumbing: "The Plumbing", copper_title: "COPPER PIPING", plumber_title: "A Plumber", valve_title: "Backwater Valve",
-                    section_expertise: "Expertise and Quality", repair_title: "Repair", reno_title: "Renovation", resid_title: "Residential", comm_title: "Commercial",
+                    section_expertise: "Expertise and Quality", expertise_card1_title: "Repair & Renovation", expertise_card2_title: "Residential & Commercial", repair_title: "Repair", reno_title: "Renovation", resid_title: "Residential", comm_title: "Commercial",
                     section_help: "Help", help_intro: "If you still have questions, simply reach us either by", help_phone: "phone", help_email: "email", help_sms: "SMS",
                     faq_q1: "No water?", faq_q2: "Smell odors?", faq_q3: "Need a quote?",
                     try_us_title: "Try Us !!", try_us_desc: "Experience unmatched plumbing service. Reasonable prices. A master plumber who has already accumulated more than 35 years of service. For further information regarding the team, please refer to the page in question by following the shortcut at the bottom of the page. Plomberie Martin Boisvert is based on the South Shore of Montreal and is ready to intervene quickly for all your residential needs. Quality, cleanliness, and courtesy are our signature, but it is our know-how that sets us apart every time. Estimates are generally free, but exceptions may apply. We serve the central South Shore and surrounding areas. (Travel fees apply outside zone).",
@@ -923,16 +983,26 @@
             if (mobileThemeToggle) mobileThemeToggle.onclick = () => setTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
 
             // --- NAVBAR SCROLL HIDE/SHOW ---
-            let lastScrollTop = 0;
             const navbar = document.getElementById('navbar');
+            const heroLogo = document.getElementById('hero-logo');
+            if (navbar) navbar.classList.remove('nav-hidden');
+            let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const initialScrollTop = lastScrollTop;
+            let hasScrolledFromInitial = false;
             window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 80) {
-                    // Scroll Down
-                    navbar.classList.add('nav-hidden');
-                } else {
-                    // Scroll Up
-                    navbar.classList.remove('nav-hidden');
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (navbar) {
+                    if (scrollTop > lastScrollTop && scrollTop > 80) navbar.classList.add('nav-hidden');
+                    else navbar.classList.remove('nav-hidden');
+                }
+                if (heroLogo) {
+                    if (!hasScrolledFromInitial && Math.abs(scrollTop - initialScrollTop) > 5) hasScrolledFromInitial = true;
+                    if (hasScrolledFromInitial) {
+                        if (scrollTop <= 0) heroLogo.classList.remove('hero-logo-shrink');
+                        else heroLogo.classList.add('hero-logo-shrink');
+                    } else {
+                        heroLogo.classList.remove('hero-logo-shrink');
+                    }
                 }
                 lastScrollTop = scrollTop;
             });
